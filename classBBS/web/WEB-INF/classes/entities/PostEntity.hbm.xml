@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entities.PostEntity" table="post" schema="bbs">
+        <id name="replyId">
+            <column name="replyID" sql-type="varchar(11)" length="11"/>
+        </id>
+        <property name="postId">
+            <column name="postID" sql-type="varchar(11)" length="11"/>
+        </property>
+        <property name="floor">
+            <column name="floor" sql-type="varchar(11)" length="11"/>
+        </property>
+        <property name="content">
+            <column name="content" sql-type="varchar(300)" length="300"/>
+        </property>
+        <property name="replyUserId">
+            <column name="replyUserID" sql-type="varchar(11)" length="11"/>
+        </property>
+        <property name="replyDate">
+            <column name="replyDate" sql-type="varchar(50)" length="50"/>
+        </property>
+    </class>
+</hibernate-mapping>

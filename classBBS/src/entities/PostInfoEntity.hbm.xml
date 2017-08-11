@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entities.PostInfoEntity" table="postInfo" schema="bbs">
+        <id name="postId">
+            <column name="postID" sql-type="varchar(11)" length="11"/>
+        </id>
+        <property name="classId">
+            <column name="classID" sql-type="varchar(11)" length="11"/>
+        </property>
+        <property name="userId">
+            <column name="userID" sql-type="varchar(11)" length="11"/>
+        </property>
+        <property name="sendDate">
+            <column name="sendDate" sql-type="varchar(11)" length="50"/>
+        </property>
+        <property name="updateDate">
+            <column name="updateDate" sql-type="varchar(11)" length="50"/>
+        </property>
+        <property name="isTop">
+            <column name="isTop" sql-type="varchar(11)" length="11"/>
+        </property>
+        <property name="title">
+            <column name="title" sql-type="varchar(20)" length="20"/>
+        </property>
+    </class>
+</hibernate-mapping>

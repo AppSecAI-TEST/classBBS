@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <constant name="struts.action.excludePattern" value="/images/.*?" />
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.ui.theme" value="simple"/>
+    <constant name="struts.xwork.chaining.copyMessages" value="true" />                                                 <!--设置action chain传递时拷贝ActionMessage-->
+    <constant name="struts.i18n.encoding" value="GBK"/>                                                                 <!--解决提交表单中文传递乱码-->
+<!--
+    <constant name="struts.xwork.chaining.copyErrors" value="true" />
+    <constant name="struts.xwork.chaining.copyFieldErrors" value="true" />
+-->
+
+    <package name="UserAction" extends="struts-default" namespace="/pages">
+
+        <action name="LogInIndex">
+            <result>login.jsp</result>
+        </action>
+        <!--用户登录页面action-->
+        <action name="LogOut">
+            <result type="redirectAction">LogInIndex</result>
+        </action>
+
+        <action name="LogIn" class="action.UserAction" method="logIn">
+            <result name="success" type="chain">
+                <param name="actionName">PostInfo</param>
+                <param name="classID">${classID}</param>
+            </result>
+            <result name="input">login.jsp</result>
+        </action>
+        <!--用户登录action-->
+        <action name="UpdateUserIndex" class="action.UserAction" method="updateUserFlash">
+            <result name="success">updateUser.jsp</result>
+            <result name="input">updateUser.jsp</result>
+        </action>
+        <!--更新用户页面action-->
+        <action name="UpdateUser" class="action.UserAction" method="updateUser">
+            <result name="success">postList.jsp</result>
+            <result name="input">updateUser.jsp</result>
+        </action>
+        <!--更新用户action-->
+        <action name="DeleteUser" class="action.UserAction" method="deleteUser">
+            <result name="success">postList.jsp</result>
+            <result name="input">postList.jsp</result>
+        </action>
+        <!--删除用户action-->
+
+        <action name="RegisterIndex">
+            <result>register.jsp</result>
+        </action>
+        <!--用户注册页面action-->
+        <action name="Register" class="action.UserAction" method="register">
+            <result name="success" type="redirectAction">SaveUserInfoIndex?userInfo.userId=${user.userId}</result>
+            <result name="input">register.jsp</result>
+        </action>
+        <!--用户注册action-->
+        <action name="PasswordBackIndex">
+            <result>passwordBack.jsp</result>
+        </action>
+        <!--找回密码页面action-->
+        <action name="PasswordBack" class="action.UserAction" method="passwordBack">
+            <result name="success" type="chain">QuestionAnswerIndex</result>
+            <result name="input">passwordBack.jsp</result>
+        </action>
+        <!--找回密码action-->
+        <action name="QuestionAnswerIndex" class="action.UserAction" method="questionAnswerFlash">
+            <result name="input">questionAnswer.jsp</result>
+        </action>
+        <!--回答密保问题页面action-->
+        <action name="QuestionAnswer" class="action.UserAction" method="questionAnswer">
+            <result name="success">updatePassword.jsp</result>
+            <result name="input" type="chain">QuestionAnswerIndex</result>
+        </action>
+        <!--回答密保问题action-->
+        <action name="UpdatePassword" class="action.UserAction" method="updatePassword">
+            <result name="success">updateUserSuccess.jsp</result>
+            <result name="input">updatePassword.jsp</result>
+        </action>
+        <!--更新用户密码action-->
+        <action name="GetAllUsers" class="action.UserAction" method="getAllUser">
+            <result name="success">allUser.jsp</result>
+            <result name="input">allUser.jsp</result>
+        </action>
+        <!--获取所有用户action-->
+
+    </package>
+
+    <package name="UserInfoAction" extends="struts-default" namespace="/pages">
+
+        <action name="SaveUserInfoIndex" class="action.UserInfoAction">
+            <result name="input">saveUserInfo.jsp</result>
+        </action>
+        <!--注册用户信息页面action-->
+        <action name="SaveUserInfo" class="action.UserInfoAction" method="saveUserInfo">
+            <result name="success">registerSuccess.jsp</result>
+            <result name="input">saveUserInfo.jsp</result>
+        </action>
+        <!--注册用户信息action-->
+    </package>
+<!--
+    <package name="ClassAction" extends="struts-default" namespace="/pages">
+
+    </package>
+-->
+    <package name="PostInfoAction" extends="struts-default" namespace="/pages">
+        <action name="PostInfo" class="action.PostInfoAction" method="getClassPostInfoByID">
+            <result name="success">postList.jsp</result>
+            <result name="input">postList.jsp</result>
+        </action>
+        <!--论坛帖子页面action-->
+        <action name="SendPost" class="action.PostInfoAction" method="sendPost">
+            <result name="success">postList.jsp</result>
+            <result name="input">postList.jsp</result>
+        </action>
+        <!--发帖action-->
+        <action name="TopPost" class="action.PostInfoAction" method="topPost">
+            <result name="success">postList.jsp</result>
+            <result name="input">postList.jsp</result>
+        </action>
+        <!--置顶帖子action-->
+        <action name="CancelTop" class="action.PostInfoAction" method="cancelTop">
+            <result name="success">postList.jsp</result>
+            <result name="input">postList.jsp</result>
+        </action>
+        <action name="DeletePost" class="action.PostInfoAction" method="deletePost">
+            <result name="success">postList.jsp</result>
+            <result name="input">postList.jsp</result>
+        </action>
+        <!--删除帖子action-->
+    </package>
+
+    <package name="PostAction" extends="struts-default" namespace="/pages">
+        <action name="SeePostIndex" class="action.PostAction" method="seePost">
+            <result name="success">seePost.jsp</result>
+            <result name="input">seePost.jsp</result>
+        </action>
+        <!--查看帖子内容action-->
+        <action name="ReplyPost" class="action.PostAction" method="replyPost">
+            <result name="success">seePost.jsp</result>
+            <result name="input">seePost.jsp</result>
+        </action>
+        <!--回复帖子action-->
+        <action name="DeleteContent" class="action.PostAction" method="deleteReply">
+            <result name="success">seePost.jsp</result>
+            <result name="input">seePost.jsp</result>
+        </action>
+        <!--删除回复action-->
+
+    </package>
+
+
+</struts>

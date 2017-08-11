@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entities.UserInfoEntity" table="userInfo" schema="bbs">
+        <id name="userId">
+            <column name="userID" sql-type="varchar(11)" length="11"/>
+        </id>
+        <property name="userClass">
+            <column name="userClass" sql-type="varchar(11)" length="11"/>
+        </property>
+        <property name="userName">
+            <column name="userName" sql-type="varchar(11)" length="11"/>
+        </property>
+        <property name="userPhone">
+            <column name="userPhone" sql-type="varchar(11)" length="11"/>
+        </property>
+        <property name="userEmail">
+            <column name="userEmail" sql-type="varchar(11)" length="11"/>
+        </property>
+    </class>
+</hibernate-mapping>
